@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="layout :: header"></div>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <!--            <div class="row d-flex justify-content-center">-->
+            <!--                <form action="#" method="post" novalidate="novalidate" style="min-width: 300px;"-->
+            <!--                      th:action="@{/products/save}"-->
+            <!--                      th:object="${products}">-->
+            <!--                    <h5 class="text-center">Product form</h5>-->
+
+            <!--                    <input th:field="*{id}" type="hidden"/>-->
+            <!--                    <input th:field="*{categID}" type="hidden"/>-->
+
+            <!--                    <div class="form-group">-->
+            <!--                        <input class="form-control" placeholder="Contact name" th:errorclass="field-error"-->
+            <!--                               th:field="*{name}" type="text"/>-->
+            <!--                        <em th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></em>-->
+            <!--                    </div>-->
+
+            <!--                    <div class="form-group">-->
+            <!--                        <input class="form-control" placeholder="Contact email"-->
+            <!--                               th:errorclass="field-error" th:field="*{price}"/>-->
+            <!--                        <em th:errors="*{price}" th:if="${#fields.hasErrors('price')}"></em>-->
+            <!--                    </div>-->
+
+            <!--                    <div class="form-group">-->
+            <!--                        <input class="form-control" placeholder="Contact phone" th:field="*{imageUrl}"-->
+            <!--                               type="text"/>-->
+            <!--                    </div>-->
+
+            <!--                    <div class="form-group">-->
+            <!--                        <button class="btn btn-block btn-primary" type="submit">-->
+            <!--                            <i class="fa fa-save"></i> Save-->
+            <!--                        </button>-->
+            <!--                    </div>-->
+            <!--                </form>-->
+            <!--            </div>-->
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Add new product</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#"
+                                   role="button"><i class="fa fa-wrench"></i></a>
+                                <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                </div>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form action="" class="" method="post" novalidate th:action="@{/admin/save}"
+                              th:object="${admin}">
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" data-validate-length-range="6" data-validate-words="2"
+                                           name="name" required="required" th:field="*{name}" type="text"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">ProductID<span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" data-validate-length-range="6" data-validate-words="2"
+                                           name="name" required="required" th:field="*{id}"
+                                           type="number"/>
+                                </div>
+                            </div>
+
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">CategoryID<span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" data-validate-length-range="6" data-validate-words="2"
+                                           name="name" required="required" th:field="*{categID}"
+                                           type="number"/>
+                                </div>
+                            </div>
+
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Price<span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" data-validate-length-range="6" data-validate-words="2"
+                                           name="name" required="required" th:field="*{price}" type="text"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">ImageURL<span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" data-validate-length-range="6" data-validate-words="2"
+                                           name="name" required="required" th:field="*{imageUrl}" type="text"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="ln_solid">
+                                <div class="form-group">
+                                    <div class="col-md-6 offset-md-3">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fa fa-save"></i> Save
+                                        </button>
+                                        <button class="btn btn-success" type='reset'>Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.container -->
+    </div>
+</div>
+
+<!-- footer content -->
+<footer th:replace="layout :: footer"></footer>
+<!-- /footer content -->
+</body>
+</html>
