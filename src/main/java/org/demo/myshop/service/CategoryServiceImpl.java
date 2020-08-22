@@ -1,10 +1,8 @@
 package org.demo.myshop.service;
 
 import org.demo.myshop.entity.Category;
-import org.demo.myshop.entity.Product;
 import org.demo.myshop.repository.CategoryRepository;
 import org.demo.myshop.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +10,14 @@ import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    @Autowired
-    private CategoryRepository categoryRepository;
+    //    @Autowired
+    private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
+
+    public CategoryServiceImpl(CategoryRepository categoryRepository, ProductRepository productRepository) {
+        this.categoryRepository = categoryRepository;
+        this.productRepository = productRepository;
+    }
 
     @Override
     public Iterable<Category> findAll() {
@@ -44,4 +48,5 @@ public class CategoryServiceImpl implements CategoryService {
     public Optional<Category> findById(Long id) {
         return categoryRepository.findById(id);
     }
+
 }

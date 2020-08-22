@@ -10,4 +10,5 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
     List<Category> findByNameContaining(String term);
 
     Optional<Category> findById(Long id);
+
 }

@@ -1,7 +1,6 @@
 package org.demo.myshop.service;
 
 
-import lombok.RequiredArgsConstructor;
 import org.demo.myshop.entity.Product;
 import org.demo.myshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +43,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
+    }
+
+    @Override
+    public List<Product> findByCategoryId(Long id) {
+        return productRepository.findByCategoryId(id);
     }
 }

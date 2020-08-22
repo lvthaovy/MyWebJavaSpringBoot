@@ -18,7 +18,7 @@
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                             <div class="input-group">
-                                <input class="form-control" placeholder="Search for..." type="text">
+                                <input class="form-control" placeholder="Tìm kiếm..." type="text">
                                 <span class="input-group-btn">
                       <button class="btn btn-default" type="button">Go!</button>
                     </span>
@@ -34,19 +34,19 @@
                         <div class="x_panel">
                             <div class="x_title">
 <!--                                href="#" th:href="@{/products/add}"-->
-                                <a class="btn btn-primary btn-sm" href="#" th:href="@{/admin/add}">
+                                <a class="btn btn-primary btn-sm" href="#" th:href="@{/admin/products/add}">
                                     <i class="fa fa-folder"></i>
-                                    Add new products
+                                    Thêm sản phẩm
                                 </a>
                                 <div class="clearfix"></div>
                             </div>
 
                             <div class="x_content">
-                                <th:block th:if="${#lists.isEmpty(products)}">
+                                <th:block th:if="${#lists.isEmpty(product)}">
                                     <h5>No products</h5>
                                 </th:block>
 
-                                <th:block th:unless="${#lists.isEmpty(products)}">
+                                <th:block th:unless="${#lists.isEmpty(product)}">
                                     <div class="table-responsive">
                                         <table class="table table-striped jambo_table bulk_action">
                                             <thead>
@@ -54,12 +54,12 @@
                                                 <th>
                                                     <input class="flat" id="check-all" type="checkbox">
                                                 </th>
-                                                <th class="column-title">CategoryID</th>
-                                                <th class="column-title">ProductID</th>
-                                                <th class="column-title">ProductName</th>
-                                                <th class="column-title">Price</th>
-                                                <th class="column-title">Image</th>
-                                                <th class="column-title no-link last"><span class="nobr">Action</span>
+                                                <th class="column-title a-center">Nhóm sản phẩm</th>
+                                                <th class="column-title a-center">Mã sản phẩm</th>
+                                                <th class="column-title a-center">Tên sản phẩm</th>
+                                                <th class="column-title a-center">Đơn giá</th>
+                                                <th class="column-title a-center">Hình ảnh</th>
+                                                <th class="column-title a-center"><span>Hành động</span>
                                                 </th>
                                                 <th class="bulk-actions" colspan="7">
                                                     <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions (
@@ -70,25 +70,26 @@
                                             </thead>
 
                                             <tbody>
-                                            <tr class="even pointer" th:each="product : ${products}">
+                                            <tr class="even pointer" th:each="i : ${product}">
                                                 <td class="a-center ">
                                                     <input class="flat" name="table_records" type="checkbox">
                                                 </td>
-                                                <td class="a-center" th:text="${product.categID}"></td>
-                                                <td class="a-center" th:text="${product.id}"></td>
-                                                <td class="a-center" th:text="${product.name}"></td>
-                                                <td class="a-center" th:text="${product.price} / 1000 + '000 Đ'"></td>
-                                                <td><img th:src="@{${product.imageUrl}}" th:width="60px" th:height="60px"></td>
+                                                <td class="a-center" th:text="${i.category.name}"></td>
+                                                <td class="a-center" th:text="${i.id}"></td>
+                                                <td class="a-center" th:text="${i.name}"></td>
+                                                <td class="a-center" th:text="${i.price} / 1000 + '.000 Đ'"></td>
+                                                <td><img th:height="60px" th:src="@{${i.imageUrl}}" th:width="60px">
+                                                </td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm"
-                                                       th:href="@{/admin/{id}/edit(id=${product.id})}">
+                                                       th:href="@{/admin/products/{id}/edit(id=${i.id})}">
                                                         <i class="fa fa-pencil"></i>
-                                                        Edit
+                                                        Sửa
                                                     </a>
                                                     <a class="btn btn-danger btn-sm"
-                                                        th:href="@{/admin/{id}/delete(id=${product.id})}">
+                                                       th:href="@{/admin/products/{id}/delete(id=${i.id})}">
                                                         <i class="fa fa-trash-o"></i>
-                                                        Delete
+                                                        Xoá
                                                     </a>
                                                 </td>
                                                 </td>

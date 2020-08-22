@@ -18,4 +18,6 @@ public interface ProductService {
     void delete(Long id);
 
     Optional<Product> findById(Long id);
+
+    List<Product> findByCategoryId(Long id);
 }

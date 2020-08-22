@@ -3,9 +3,6 @@ package org.demo.myshop.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Set;
 
 /**
  * A Product.
@@ -19,7 +16,7 @@ public class Product implements Serializable {
     @Column(name = "ProductID")
     private Long id;
 
-    @Column(name = "ProductName", nullable = false)
+    @Column(name = "product_name", nullable = false)
     private String name;
 
     @NotNull
@@ -30,16 +27,20 @@ public class Product implements Serializable {
     @Column(name = "ImageURL")
     private String imageUrl;
 
-    @Column(name = "CategoryID")
-    private Long categID;
 
-//    @ManyToOne
-//    @JoinColumn(name = "CategoryID", nullable=false)
-//    private Category category;
-//
-//    public Category getCategory(){
-//        return category;
-//    }
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "CategoryID")
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Category category;
+
+    //    @JsonBackReference
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public Long getId() {
         return id;
@@ -88,71 +89,4 @@ public class Product implements Serializable {
         return this;
     }
 
-    public Long getCategID() {
-        return categID;
-    }
-
-    public void setCategID(Long categID) {
-        this.categID = categID;
-    }
-
-    public Product categID(Long categID){
-        this.categID = categID;
-        return this;
-    }
-
-    //    public Set<Category> getCategories() {
-//        return categories;
-//    }
-//
-//    public void setCategories(Set<Category> categories) {
-//        this.categories = categories;
-//    }
-//
-//    public Product categories(Set<Category> categories) {
-//        this.categories = categories;
-//        return this;
-//    }
-//
-//    public Product addCategory(Category category) {
-//        this.categories.add(category);
-//        category.getProducts().add(this);
-//        return this;
-//    }
-//
-//    public Product removeCategory(Category category) {
-//        this.categories.remove(category);
-//        category.getProducts().remove(this);
-//        return this;
-//    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Product)) {
-            return false;
-        }
-        return id != null && id.equals(((Product) o).id);
-    }
-//
-//    @Override
-//    public int hashCode() {
-//        return 31;
-//    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + getId() +
-                ", name='" + getName() + "'" +
-                ", price=" + getPrice() +
-//                ", description='" + getDescription() + "'" +
-//                ", unit='" + getUnit() + "'" +
-                ", imageUrl='" + getImageUrl() + "'" +
-//                ", imageBase64='" + getImageBase64() + "'" +
-                "}";
-    }
 }

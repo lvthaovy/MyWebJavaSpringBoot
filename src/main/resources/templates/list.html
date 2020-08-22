@@ -1,77 +1,113 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head"></head>
 
-<body>
-	<nav th:replace="layout :: header"></nav>
+<body class="nav-md">
+<div class="container body">
+	<div class="main_container">
+		<div th:replace="layout :: header"></div>
 
-	<div class="container" id="main-content">
-		<div class="row">
-			<div class="col-6 no-padding">
-				<form class="form-inline" action="#" th:action="@{/admin/search}" method="get">
-					<input class="form-control mr-sm-2" type="search" name="term" placeholder="Search by name ..." />
-					<button class="btn btn-primary" type="submit">
-						<i class="fa fa-search"></i> Search
-					</button>
-				</form>
-			</div>
+		<!-- page content -->
+		<div class="right_col" role="main">
+			<div class="col-md-12 col-sm-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Add new product</h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+							<li class="dropdown">
+								<a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#"
+								   role="button"><i class="fa fa-wrench"></i></a>
+								<div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+									<a class="dropdown-item" href="#">Settings 1</a>
+									<a class="dropdown-item" href="#">Settings 2</a>
+								</div>
+							</li>
+							<li><a class="close-link"><i class="fa fa-close"></i></a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						<form action="" class="" method="post" novalidate th:action="@{/admin/products/save}"
+							  th:object="${admin}">
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required">*</span></label>
+								<div class="col-md-6 col-sm-6">
+									<input class="form-control" data-validate-length-range="6" data-validate-words="2"
+										   name="name" required="required" th:field="*{name}" type="text"
+									/>
+								</div>
+							</div>
 
-			<div class="col-6 no-padding">
-				<a href="#" th:href="@{/admin/add}" class="btn btn-success float-right">
-					<i class="fa fa-plus-square"></i> New product
-				</a>
-			</div>
-		</div>
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">ProductID<span
+										class="required">*</span></label>
+								<div class="col-md-6 col-sm-6">
+									<input class="form-control" data-validate-length-range="6" data-validate-words="2"
+										   name="name" required="required" th:field="*{id}"
+										   type="number"/>
+								</div>
+							</div>
 
-		<div class="row mt-4">
-			<div th:if="${successMessage}" class="col-12 alert alert-success alert-dismissible fade show" role="alert">
-				<span th:text="${successMessage}"></span>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">Category Name<span
+										class="required">*</span></label>
+								<div class="col-md-6 col-sm-6">
+									<select required="true" th:field="*{category.name}"/>
+									<option th:text="Select" th:value="''"></option>
+									<option th:each="i : ${admin}"
+											th:selected="${i.category.id} == ${admin.category.id}"
+											th:text="${admin.category.name}"
+											th:value="${admin.category.id}">
+									</option>
+									</select>
 
-			<th:block th:if="${#lists.isEmpty(products)}">
-				<h5>No products</h5>
-			</th:block>
+								</div>
+							</div>
 
-			<th:block th:unless="${#lists.isEmpty(products)}">
-				<div class="table-responsive">
-					<h5>List of products</h5>
-					<table class="table table-bordered table-hover">
-						<thead>
-						<tr>
-							<th>ID</th>
-							<th>Name</th>
-							<th>Price</th>
-							<th>ImageURL</th>
-							<th>Action</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr th:each="product : ${products}">
-<!--							<th scope="row" th:text="${iterStat.count}"></th>-->
-							<td th:text="${product.id}"></td>
-							<td th:text="${product.name}"></td>
-							<td th:text="${product.price}"></td>
-							<td th:text="${product.imageUrl}"></td>
-							<td>
-								<a href="#" th:href="@{/products/{id}/edit(id=${product.id})}" class="mr-sm-2 text-primary">
-									<i class="fa fa-pencil"></i>
-								</a>
-								<a href="#" th:href="@{/products/{id}/delete(id=${product.id})}" class="text-danger">
-									<i class="fa fa-trash"></i>
-								</a>
-							</td>
-						</tr>
-						</tbody>
-					</table>
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">Price<span
+										class="required">*</span></label>
+								<div class="col-md-6 col-sm-6">
+									<input class="form-control" data-validate-length-range="6" data-validate-words="2"
+										   name="name" required="required" th:field="*{price}" type="text"
+									/>
+								</div>
+							</div>
+
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">ImageURL<span
+										class="required">*</span></label>
+								<div class="col-md-6 col-sm-6">
+									<input class="form-control" data-validate-length-range="6" data-validate-words="2"
+										   name="name" required="required" th:field="*{imageUrl}" type="text"
+									/>
+								</div>
+							</div>
+
+							<div class="ln_solid">
+								<div class="form-group">
+									<div class="col-md-6 offset-md-3">
+										<button class="btn btn-primary" type="submit">
+											<i class="fa fa-save"></i> Save
+										</button>
+										<button class="btn btn-success" type='reset'>Reset</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
-			</th:block>
-		</div>
-	</div><!-- /.container -->
+			</div>
 
-	<footer th:replace="layout :: footer"></footer>
+		</div><!-- /.container -->
+	</div>
+</div>
 
+<!-- footer content -->
+<footer th:replace="layout :: footer"></footer>
+<!-- /footer content -->
 </body>
 </html>
