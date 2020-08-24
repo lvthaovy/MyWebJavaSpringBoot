@@ -8,13 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/admin")
 public class WebController {
     @Autowired
     private ProductService productService;
@@ -22,13 +24,24 @@ public class WebController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/products")
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/admin/products";
+    }
+
+    @GetMapping("/admin/products")
     public String list(Model model) {
         model.addAttribute("product", productService.findAll());
         return "tables";
     }
 
-    @GetMapping("/products/search")
+    @GetMapping("/admin/products/search")
     public String search(@RequestParam("term") String term, Model model) {
         if (StringUtils.isEmpty(term)) {
             return "redirect:/admin/products";
@@ -38,7 +51,7 @@ public class WebController {
         return "tables";
     }
 
-    @GetMapping("/products/add")
+    @GetMapping("/admin/products/add")
     public String add(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("isNew", true);
@@ -46,7 +59,7 @@ public class WebController {
         return "form";
     }
 
-    @GetMapping("/products/{id}/edit")
+    @GetMapping("/admin/products/{id}/edit")
     public String edit(@PathVariable("id") Long id, Model model) {
         model.addAttribute("product", productService.findOne(id));
         model.addAttribute("isNew", false);
@@ -54,20 +67,18 @@ public class WebController {
         return "form";
     }
 
-    @PostMapping("/products/save")
+    @PostMapping("/admin/products/save")
     public String save(@Valid Product product, BindingResult result, RedirectAttributes redirect) {
         if (result.hasErrors()) {
             return "form";
         }
         productService.save(product);
-//        redirect.addFlashAttribute("successMessage", "Saved contact successfully!");
         return "redirect:/admin/products";
     }
 
-    @GetMapping("/products/{id}/delete")
+    @GetMapping("/admin/products/{id}/delete")
     public String delete(@PathVariable long id, RedirectAttributes redirect) {
         productService.delete(id);
-        redirect.addFlashAttribute("successMessage", "Deleted contact successfully!");
         return "redirect:/admin/products";
     }
 }

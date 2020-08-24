@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head"></head>
+<head>
+    <title>Login Page</title>
+    <!--    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />-->
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="/vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="/css/custom.min.css" rel="stylesheet">
+</head>
+<!--<body>-->
+<!--<div class="main-content">-->
+<!--    <p th:if="${param.error}" class="error">Invalid email or password</p>-->
+<!--    <p th:if="${param.logout}" class="success">You have been logged out</p>-->
+<!--    <h3>Login to continue</h3>-->
+<!--    <form th:action="@{/login}" method="POST">-->
+<!--        <input type="text" name="email" placeholder="Your email" /><br />-->
+<!--        <input type="password" name="password" placeholder="Your password" /><br />-->
+<!--        <button type="submit">Login</button> <br />-->
+<!--    </form>-->
+<!--</div>-->
 <body class="login">
 <div>
     <a class="hiddenanchor" id="signup"></a>
@@ -9,16 +42,18 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form>
+                <form method="POST" th:action="@{/login}">
                     <h1>Login Form</h1>
                     <div>
-                        <input type="text" class="form-control" placeholder="Username" required="" />
+                        <input class="form-control" name="email" placeholder="Your email" required="" type="text"/>
                     </div>
                     <div>
-                        <input type="password" class="form-control" placeholder="Password" required="" />
+                        <input class="form-control" name="password" placeholder="Your password" required=""
+                               type="password"/>
                     </div>
                     <div>
-                        <a class="btn btn-default submit" href="index.html">Log in</a>
+                        <!--                            <a class="btn btn-default submit">Log in</a>-->
+                        <button class="btn btn-default" type="submit">Log in</button>
                         <a class="reset_pass" href="#">Lost your password?</a>
                     </div>
 
@@ -26,33 +61,34 @@
 
                     <div class="separator">
                         <p class="change_link">New to site?
-                            <a href="#signup" class="to_register"> Create Account </a>
+                            <a class="to_register" href="#signup"> Create Account </a>
                         </p>
 
                         <div class="clearfix"></div>
-                        <br />
+                        <br/>
 
                         <div>
                             <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and
+                                Terms</p>
                         </div>
                     </div>
                 </form>
             </section>
         </div>
 
-        <div id="register" class="animate form registration_form">
+        <div class="animate form registration_form" id="register">
             <section class="login_content">
                 <form>
                     <h1>Create Account</h1>
                     <div>
-                        <input type="text" class="form-control" placeholder="Username" required="" />
+                        <input class="form-control" placeholder="Username" required="" type="text"/>
                     </div>
                     <div>
-                        <input type="email" class="form-control" placeholder="Email" required="" />
+                        <input class="form-control" placeholder="Email" required="" type="email"/>
                     </div>
                     <div>
-                        <input type="password" class="form-control" placeholder="Password" required="" />
+                        <input class="form-control" placeholder="Password" required="" type="password"/>
                     </div>
                     <div>
                         <a class="btn btn-default submit" href="index.html">Submit</a>
@@ -62,15 +98,16 @@
 
                     <div class="separator">
                         <p class="change_link">Already a member ?
-                            <a href="#signin" class="to_register"> Log in </a>
+                            <a class="to_register" href="#signin"> Log in </a>
                         </p>
 
                         <div class="clearfix"></div>
-                        <br />
+                        <br/>
 
                         <div>
                             <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and
+                                Terms</p>
                         </div>
                     </div>
                 </form>
@@ -78,6 +115,6 @@
         </div>
     </div>
 </div>
-<!--<footer th:replace="layout :: footer"></footer>-->
+</div>
 </body>
 </html>

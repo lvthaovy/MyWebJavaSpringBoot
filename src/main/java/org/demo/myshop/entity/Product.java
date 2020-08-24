@@ -1,12 +1,11 @@
 package org.demo.myshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-/**
- * A Product.
- */
 @Entity
 @Table(name = "products")
 public class Product implements Serializable {
@@ -28,9 +27,9 @@ public class Product implements Serializable {
     private String imageUrl;
 
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "CategoryID")
-//    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonManagedReference
     private Category category;
 
     //    @JsonBackReference

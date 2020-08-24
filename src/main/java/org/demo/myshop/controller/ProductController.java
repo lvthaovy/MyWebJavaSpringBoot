@@ -48,8 +48,7 @@ public class ProductController {
         return new ResponseEntity<>(product.get(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/products",
-            method = RequestMethod.POST)
+    @PostMapping("/products")
     public ResponseEntity<Product> createProduct(
             @RequestBody Product product,
             UriComponentsBuilder builder) {

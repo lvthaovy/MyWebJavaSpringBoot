@@ -7,9 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Set;
 
-/**
- * A Category.
- */
+
 @Entity
 @Table(name = "categories")
 public class Category implements Serializable {
@@ -25,12 +23,11 @@ public class Category implements Serializable {
     @Column(name = "CategoryName", nullable = false)
     private String name;
 
-    //    @JsonManagedReference
-    @OneToMany(mappedBy = "category")
-//    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonBackReference
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
     private Set<Product> products;
 
-    @JsonBackReference
     public Set<Product> getProducts() {
         return products;
     }

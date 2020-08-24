@@ -33,7 +33,8 @@
                         <form action="" class="" method="post" novalidate th:action="@{/admin/products/save}"
                               th:object="${product}">
                             <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required">*</span></label>
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Tên sản phẩm<span
+                                        class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
                                     <input class="form-control" data-validate-length-range="6" data-validate-words="2"
                                            name="name" required="required" th:field="*{name}" type="text"
@@ -42,7 +43,7 @@
                             </div>
 
                             <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">ProductID<span
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Mã sản phẩm<span
                                         class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
                                     <input class="form-control" data-validate-length-range="6" data-validate-words="2"
@@ -52,7 +53,7 @@
                             </div>
 
                             <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">CategoryID<span
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Nhóm sản phẩm<span
                                         class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
                                     <select name="category" th:field="*{category}">
@@ -65,7 +66,7 @@
                             </div>
 
                             <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Price<span
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Đơn giá<span
                                         class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
                                     <input class="form-control" data-validate-length-range="6" data-validate-words="2"
@@ -75,7 +76,7 @@
                             </div>
 
                             <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">ImageURL<span
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Hình ảnh<span
                                         class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
                                     <input class="form-control" data-validate-length-range="6" data-validate-words="2"
